@@ -12,7 +12,9 @@ const ChatGPTComponent: React.FC = () => {
   const handleGetResponse = async () => {
     try {
       const responseFromChatGPT = await getChatGPTResponse(prompt);
-      setResponse(responseFromChatGPT.response);
+      console.log(responseFromChatGPT.response)
+      const x = [responseFromChatGPT.response]
+      setResponse(x);
     } catch (error) {
       console.error("Error getting response from ChatGPT:", error);
     }
