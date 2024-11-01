@@ -144,7 +144,10 @@ const Menu = () => {
                     <Hamburger toggled={isOpen} toggle={setOpen} />
                 </div>
                 <div className="hidden lg:flex space-x-5 p-3 text-xl">
-                    <Link to="/dashboard" className="hover:text-gray-400">
+                    <Link
+                        to="/vodamed-frontend/dashboard"
+                        className="hover:text-gray-400"
+                    >
                         Dashboard
                     </Link>
                     <Link to="/" className="hover:text-gray-400">
@@ -245,7 +248,10 @@ const Menu = () => {
                 </div>
                 <ul className="flex flex-col items-left pl-7 py-4 space-y-4 text-xl">
                     <li className="hover:text-gray-400">
-                        <Link to="/dashboard" onClick={() => setOpen(false)}>
+                        <Link
+                            to="/vodamed-frontend/dashboard"
+                            onClick={() => setOpen(false)}
+                        >
                             Dashboard
                         </Link>
                     </li>

@@ -4,17 +4,17 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "./authentication/authContext";
 
 interface ProtectedRouteProps {
-  element: React.ReactElement;
+    element: React.ReactElement;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
-  const { isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuth();
 
-  if (!isAuthenticated) {
-    return <Navigate to="/signin" replace />;
-  }
+    if (!isAuthenticated) {
+        return <Navigate to="/vodamed-frontend/signin" replace />;
+    }
 
-  return element;
+    return element;
 };
 
 export default ProtectedRoute;
