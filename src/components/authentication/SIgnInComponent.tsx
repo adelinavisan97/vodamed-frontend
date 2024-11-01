@@ -69,13 +69,13 @@ const SignInComponent: React.FC = () => {
             {/* Right side: Animation */}
             <div className="w-full md:w-2/3 hidden md:block bg-cover bg-center">
                 <script
-                    src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+                    src="https://lottie.host/embed/3980b60b-f7ca-4417-9c67-a90822a78a8e/Y7DeErVRdj.json"
                     type="module"
                 ></script>
 
                 <iframe
                     style={{ width: "80%", height: "80%" }}
-                    src="https://lottie.host/embed/d24b228b-0af1-4719-ad84-aef34b5e0e12/3f7LvYMzXb.json"
+                    src="https://lottie.host/embed/3980b60b-f7ca-4417-9c67-a90822a78a8e/Y7DeErVRdj.json"
                 ></iframe>
             </div>
         </div>

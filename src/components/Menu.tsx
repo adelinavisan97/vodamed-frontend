@@ -43,7 +43,11 @@ const Menu = () => {
                     </div>
                     <div className="absolute left-1/2 transform -translate-x-1/2">
                         <Link to={"/"}>
-                            <img src="/logo.png" alt="Logo" className="h-16" />
+                            <img
+                                src="/vodamed-frontend/logo.png"
+                                alt="Logo"
+                                className="h-16"
+                            />
                         </Link>
                     </div>
                     <div className="relative">
@@ -83,7 +87,7 @@ const Menu = () => {
                         <div className="absolute left-1/2 transform -translate-x-1/2">
                             <Link to={"/"}>
                                 <img
-                                    src="/logo.png"
+                                    src="/vodamed-frontend/logo.png"
                                     alt="Logo"
                                     className="h-16 w-auto"
                                 />
@@ -155,7 +159,11 @@ const Menu = () => {
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2">
                     <Link to={"/"}>
-                        <img src="/logo.png" alt="Logo" className="h-16" />
+                        <img
+                            src="/vodamed-frontend/logo.png"
+                            alt="Logo"
+                            className="h-16"
+                        />
                     </Link>
                 </div>
 
@@ -204,7 +212,7 @@ const Menu = () => {
                     <div className="absolute left-1/2 transform -translate-x-1/2">
                         <Link to={"/"}>
                             <img
-                                src="/logo.png"
+                                src="/vodamed-frontend/logo.png"
                                 alt="Logo"
                                 className="h-16 w-auto"
                             />
