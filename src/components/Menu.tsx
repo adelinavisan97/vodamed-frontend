@@ -28,7 +28,7 @@ const Menu = () => {
 
     if (!isAuthenticated) {
         return (
-            <div className="relative font-sans py-2">
+            <div className="relative font-sans py-2 border-b border-gray-150">
                 <div className="flex justify-between items-center px-6 py-2 text-gray-800">
                     <div className="lg:hidden">
                         <Hamburger toggled={isOpen} toggle={setOpen} />
