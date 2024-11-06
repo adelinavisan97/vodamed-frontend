@@ -44,7 +44,7 @@ const Menu = () => {
                     <div className="absolute left-1/2 transform -translate-x-1/2">
                         <Link to={"/"}>
                             <img
-                                src="/vodamed-frontend/logo.png"
+                                src={`${import.meta.env.BASE_URL}logo.png`}
                                 alt="Logo"
                                 className="h-16"
                             />
@@ -87,7 +87,7 @@ const Menu = () => {
                         <div className="absolute left-1/2 transform -translate-x-1/2">
                             <Link to={"/"}>
                                 <img
-                                    src="/vodamed-frontend/logo.png"
+                                    src={`${import.meta.env.BASE_URL}logo.png`}
                                     alt="Logo"
                                     className="h-16 w-auto"
                                 />
@@ -160,7 +160,7 @@ const Menu = () => {
                 <div className="absolute left-1/2 transform -translate-x-1/2">
                     <Link to={"/"}>
                         <img
-                            src="/vodamed-frontend/logo.png"
+                            src={`${import.meta.env.BASE_URL}logo.png`}
                             alt="Logo"
                             className="h-16"
                         />
@@ -212,7 +212,7 @@ const Menu = () => {
                     <div className="absolute left-1/2 transform -translate-x-1/2">
                         <Link to={"/"}>
                             <img
-                                src="/vodamed-frontend/logo.png"
+                                src={`${import.meta.env.BASE_URL}logo.png`}
                                 alt="Logo"
                                 className="h-16 w-auto"
                             />
