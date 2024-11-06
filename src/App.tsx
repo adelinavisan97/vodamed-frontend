@@ -15,17 +15,11 @@ const App = () => {
                 <Menu />
                 <Routes>
                     <Route
-                        path="/vodamed-frontend"
+                        path="/"
                         element={<ProtectedRoute element={<Dashboard />} />}
                     />
-                    <Route
-                        path="/vodamed-frontend/signup"
-                        element={<SignUp />}
-                    />
-                    <Route
-                        path="/vodamed-frontend/signin"
-                        element={<SignInComponent />}
-                    />
+                    <Route path="signup" element={<SignUp />} />
+                    <Route path="signin" element={<SignInComponent />} />
                 </Routes>
             </AuthProvider>
         </div>

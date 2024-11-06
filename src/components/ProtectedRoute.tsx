@@ -11,7 +11,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element }) => {
     const { isAuthenticated } = useAuth();
 
     if (!isAuthenticated) {
-        return <Navigate to="/vodamed-frontend/signin" replace />;
+        return <Navigate to="/signin" replace />;
     }
 
     return element;
