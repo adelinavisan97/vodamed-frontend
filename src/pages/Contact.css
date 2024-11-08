@@ -1,0 +1,73 @@
+.contact-form-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex; /* Add this line */
+    flex-direction: column; /* Ensure it stacks vertically */
+    align-items: center; /* Center child elements */
+}
+
+.form-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    padding-top: 3rem;
+    color: #333;
+    width: 100%; /* Add this line */
+}
+
+.highlight {
+    color: #6bb5ff;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 500px; /* Control form width */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 2rem 1.5rem; /* Add padding on all sides */
+}
+
+.form-input {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 14px;
+    color: #666;
+}
+
+.checkbox-input {
+    width: 18px;
+    height: 18px;
+}
+
+.submit-button {
+    padding: 0.75rem;
+    font-size: 16px;
+    color: #fff;
+    background-color: #5a9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #488;
+}
