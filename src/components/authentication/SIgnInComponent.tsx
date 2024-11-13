@@ -11,6 +11,7 @@ const SignInComponent: React.FC = () => {
 
     const handleSignIn = async () => {
         try {
+            //WANT TO CHANGE THIS TO ALSO SET USERID !!!!!
             const response = await signIn(email, password);
             localStorage.setItem("authToken", response.token);
             login(response.token);
