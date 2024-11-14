@@ -18,12 +18,10 @@ const Menu = () => {
         logout();
     };
 
-    // Function to handle search input (optional)
     const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const searchQuery = event.currentTarget.search.value;
         console.log("Search Query:", searchQuery);
-        // Implement your search functionality here
     };
 
     if (!isAuthenticated) {
@@ -34,6 +32,9 @@ const Menu = () => {
                         <Hamburger toggled={isOpen} toggle={setOpen} />
                     </div>
                     <div className="hidden lg:flex space-x-5 p-3 text-xl">
+                        <Link to="/about" className="hover:text-gray-400">
+                            About
+                        </Link>
                         <Link to="/shop" className="hover:text-gray-400">
                             Shop
                         </Link>
@@ -122,6 +123,11 @@ const Menu = () => {
                     </div>
                     <ul className="flex flex-col items-left pl-7 py-4 space-y-4 text-xl">
                         <li className="hover:text-gray-400">
+                            <Link to="/about" onClick={() => setOpen(false)}>
+                                About
+                            </Link>
+                        </li>
+                        <li className="hover:text-gray-400">
                             <Link to="/shop" onClick={() => setOpen(false)}>
                                 Shop
                             </Link>
@@ -149,6 +155,9 @@ const Menu = () => {
                     </Link>
                     <Link to="/" className="hover:text-gray-400">
                         My prescriptions
+                    </Link>
+                    <Link to="/about" className="hover:text-gray-400">
+                        About
                     </Link>
                     <Link to="/shop" className="hover:text-gray-400">
                         Shop
@@ -252,6 +261,11 @@ const Menu = () => {
                     <li className="hover:text-gray-400">
                         <Link to="/" onClick={() => setOpen(false)}>
                             My prescriptions
+                        </Link>
+                    </li>
+                    <li className="hover:text-gray-400">
+                        <Link to="/about" onClick={() => setOpen(false)}>
+                            About
                         </Link>
                     </li>
                     <li className="hover:text-gray-400">
