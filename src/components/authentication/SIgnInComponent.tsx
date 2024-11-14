@@ -15,6 +15,8 @@ const SignInComponent: React.FC = () => {
             const response = await signIn(email, password);
             localStorage.setItem("authToken", response.token);
             login(response.token);
+            localStorage.setItem("userId", response.userId)
+            console.log(localStorage.getItem("userId"))
             // alert("Sign-in successful!");
             navigate("/vodamed-frontend");
             // Optionally, redirect the user or perform any other actions

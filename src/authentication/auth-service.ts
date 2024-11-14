@@ -25,7 +25,6 @@ export const confirmSignUp = async (email: string, code: string) => {
     return response.data;
 };
 
-//Will need changing
 export const signIn = async (email: string, password: string) => {
     const response = await axios.post(`${API_URL}/users/signin`, {
         email,
