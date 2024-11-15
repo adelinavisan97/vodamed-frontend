@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { signIn } from "../../authentication/auth-service";
+import React, { useState } from "react"
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "./authContext";
+import { signIn } from "../../services/backend-service";
 
 const SignInComponent: React.FC = () => {
     const [email, setEmail] = useState("");
