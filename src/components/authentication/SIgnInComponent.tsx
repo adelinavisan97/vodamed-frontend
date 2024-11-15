@@ -8,14 +8,18 @@ const SignInComponent: React.FC = () => {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const { login } = useAuth();
+    const { isAuthenticated } = useAuth();
 
+    if (isAuthenticated) {
+        navigate("/");
+    }
     const handleSignIn = async () => {
         try {
             const response = await signIn(email, password);
             localStorage.setItem("authToken", response.token);
             login(response.token);
             // alert("Sign-in successful!");
-            navigate("/vodamed-frontend");
+            navigate("/");
             // Optionally, redirect the user or perform any other actions
             console.log(response);
         } catch (error) {
