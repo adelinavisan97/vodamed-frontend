@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:443/api";
+//Need to change when running locally vs against deployment should probs be an env var really
+// http://localhost:443
+const API_URL = "https://sea-turtle-app-9l4ak.ondigitalocean.app/api";
 
 export const signUp = async (
     email: string,
