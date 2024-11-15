@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5555";
+const API_URL = "http://localhost:443/api";
 
 export const signUp = async (
   email: string,
@@ -49,7 +49,7 @@ export const getChatGPTResponse = async (prompt: string) => {
     throw new Error("No auth token found");
   }
   const response = await axios.post(
-    `${API_URL}/api/chatgpt`,
+    `${API_URL}/gpt`,
     { prompt },
     {
       headers: {
