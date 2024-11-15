@@ -1,8 +1,9 @@
 import React from "react";
+import Prescriptions from "../components/PrescriptionsComponent";
 
 const Dashboard = () => {
     return (
-        <div className="bg-gray-100 h-screen">
+        <div className="bg-gray-100 min-h-screen">
             {/* Hero Section */}
             <div className="relative rounded-lg shadow-md overflow-hidden bg-sky-200">
                 {/* Background Image */}
@@ -16,7 +17,7 @@ const Dashboard = () => {
 
                 {/* Content */}
                 <div className="relative z-10 max-w-lg mx-auto py-40 flex flex-col items-center text-center">
-                    <h1 className="lg:text-8xl sm:text-6xl font-bold text-sky-600 mb-4">
+                    <h1 className="lg:text-7xl sm:text-6xl font-bold text-sky-600 mb-4">
                         Your online pharmacy
                     </h1>
                     <p className="text-gray-700 mb-6 lg:text-3xl sm:text-xl">
@@ -34,15 +35,39 @@ const Dashboard = () => {
             </div>
 
             {/* Recommended Medications Section */}
-            <div className="mt-4 bg-white rounded-lg shadow-md p-8 flex flex-col md:flex-row">
+            <div className="mt-4 p-12 bg-white rounded-lg shadow-md p-8 flex flex-col md:flex-row">
                 {/* Text Section */}
-                <div className="md:w-1/2 md:pr-4">
+                <div className="md:w-1/2 md:pr-4 mb-4">
                     <h2 className="text-5xl font-bold text-orange-500 mb-4">
                         Latest advice from NHS
                     </h2>
                     <p className="text-gray-700 mb-6">
-                        Review medications recommended based on your health
-                        history
+                        Getting vaccinated against the flu is one of the best
+                        ways to protect yourself and others from serious illness
+                        this winter. The NHS recommends the flu vaccine for
+                        individuals who are at higher risk, including older
+                        adults, young children, pregnant women, and those with
+                        underlying health conditions.
+                    </p>
+                    <p className="text-gray-700 mb-6">
+                        By getting vaccinated, you help reduce the spread of the
+                        flu, prevent hospitalizations, and protect those around
+                        you who may be more vulnerable. The flu vaccine is safe
+                        and has been proven effective in reducing the severity
+                        of symptoms and complications associated with the flu.
+                    </p>
+                    <p text-gray-700 mb-6>
+                        For more detailed information about who should get the
+                        flu vaccine and why, visit the official government
+                        guidance for Winter 2024-2025:{" "}
+                        <a
+                            href="https://www.gov.uk/government/publications/flu-vaccination-who-should-have-it-this-winter-and-why/the-flu-vaccination-who-should-have-it-and-why-winter-2023-to-2024"
+                            target="_blank"
+                            rel="noopener noreferrer" // Adds security features
+                            className="text-blue-600 hover:text-blue-800 underline cursor-pointer transition-colors duration-200"
+                        >
+                            Read more about the flu vaccination
+                        </a>
                     </p>
                 </div>
 
@@ -63,34 +88,8 @@ const Dashboard = () => {
             </div>
 
             {/* Recent Prescriptions Section */}
-            <div className="mt-10 bg-white rounded-lg shadow-md p-8">
-                <h3 className="text-2xl font-bold text-blue-600 mb-4">
-                    Recent prescriptions
-                </h3>
-                <p className="text-gray-700 mb-6">Summary</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-gray-50 p-4 rounded shadow text-center">
-                        <h4 className="font-semibold text-gray-800">
-                            Prescription 1
-                        </h4>
-                        <p className="text-gray-500">Medication name</p>
-                        <p className="text-gray-400 text-sm">10/10/2024</p>
-                    </div>
-                    <div className="bg-gray-50 p-4 rounded shadow text-center">
-                        <h4 className="font-semibold text-gray-800">
-                            Prescription 2
-                        </h4>
-                        <p className="text-gray-500">Medication name</p>
-                        <p className="text-gray-400 text-sm">05/09/2024</p>
-                    </div>
-                    <div className="bg-gray-50 p-4 rounded shadow text-center">
-                        <h4 className="font-semibold text-gray-800">
-                            Prescription 3
-                        </h4>
-                        <p className="text-gray-500">Medication name</p>
-                        <p className="text-gray-400 text-sm">01/09/2024</p>
-                    </div>
-                </div>
+            <div>
+                <Prescriptions />
             </div>
         </div>
     );

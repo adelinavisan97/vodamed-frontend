@@ -19,6 +19,8 @@ const SignInComponent: React.FC = () => {
             localStorage.setItem("authToken", response.token);
             login(response.token);
             // alert("Sign-in successful!");
+            localStorage.setItem("userId", response.userId);
+            console.log(localStorage.getItem("userId"));
             navigate("/");
             // Optionally, redirect the user or perform any other actions
             console.log(response);
