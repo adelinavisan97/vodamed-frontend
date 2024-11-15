@@ -17,7 +17,7 @@ const About = () => {
         <div className="flex flex-col md:flex-row gap-8 items-center border border-blue-200 rounded-lg p-6 bg-white shadow-sm">
           <div className="md:w-1/2">
             <img
-              src="images/healthcare-professional-reviewing-meds.webp"
+              src="healthcare-professional-reviewing-meds.webp"
               alt="Healthcare professionals reviewing medication"
               className="rounded-lg w-full h-auto shadow-md"
             />
