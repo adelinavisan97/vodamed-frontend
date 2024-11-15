@@ -16,7 +16,7 @@ const App = () => {
                 <Menu />
                 <Routes>
                     <Route
-                        path="/"
+                        path="/dashboard"
                         element={<ProtectedRoute element={<Dashboard />} />}
                     />
                     <Route path="/signup" element={<SignUp />} />

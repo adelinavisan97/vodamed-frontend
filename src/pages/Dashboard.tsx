@@ -7,7 +7,7 @@ const Dashboard = () => {
             <div className="relative rounded-lg shadow-md overflow-hidden bg-sky-200">
                 {/* Background Image */}
                 <div
-                    className="absolute inset-0 bg-cover bg-right bg-no-repeat opacity-70"
+                    className="absolute inset-0 bg-cover bg-no-repeat opacity-70 rotate-bg-sm"
                     style={{
                         backgroundImage: "url('pills.png')",
                         backgroundSize: "contain",
@@ -16,10 +16,10 @@ const Dashboard = () => {
 
                 {/* Content */}
                 <div className="relative z-10 max-w-lg mx-auto py-40 flex flex-col items-center text-center">
-                    <h1 className="text-6xl font-bold text-sky-600 mb-4">
+                    <h1 className="lg:text-8xl sm:text-6xl font-bold text-sky-600 mb-4">
                         Your online pharmacy
                     </h1>
-                    <p className="text-gray-700 mb-6 text-base">
+                    <p className="text-gray-700 mb-6 lg:text-3xl sm:text-xl">
                         A summary of your prescriptions and health history
                     </p>
                     <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
@@ -34,19 +34,31 @@ const Dashboard = () => {
             </div>
 
             {/* Recommended Medications Section */}
-            <div className="mt-4 bg-white rounded-lg shadow-md p-8">
-                <h2 className="text-3xl font-bold text-orange-500 mb-4">
-                    Recommended medications
-                </h2>
-                <p className="text-gray-700 mb-6">
-                    Review medications recommended based on your health history
-                </p>
-                <div className="flex justify-around">
-                    <img
-                        src="path-to-your-pill-image.jpg"
-                        alt="Pills"
-                        className="w-40 rounded-lg"
-                    />
+            <div className="mt-4 bg-white rounded-lg shadow-md p-8 flex flex-col md:flex-row">
+                {/* Text Section */}
+                <div className="md:w-1/2 md:pr-4">
+                    <h2 className="text-5xl font-bold text-orange-500 mb-4">
+                        Latest advice from NHS
+                    </h2>
+                    <p className="text-gray-700 mb-6">
+                        Review medications recommended based on your health
+                        history
+                    </p>
+                </div>
+
+                {/* Video Section */}
+                <div className="md:w-1/2">
+                    <div className="relative aspect-w-16 aspect-h-9 overflow-hidden rounded-lg">
+                        {/* YouTube Video */}
+                        <iframe
+                            className="w-full h-full"
+                            src="https://www.youtube.com/embed/HZeSnvADmgw?autoplay=1&mute=1&controls=1&loop=1&playlist=HZeSnvADmgw"
+                            title="YouTube video"
+                            frameBorder="0"
+                            allow="autoplay; encrypted-media"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
                 </div>
             </div>
 
