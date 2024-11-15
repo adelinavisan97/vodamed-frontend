@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getChatGPTResponse } from "../authentication/auth-service";
+import { getChatGPTResponse } from "../authentication/backend-service";
 
 const ChatGPTComponent: React.FC = () => {
   const [prompt, setPrompt] = useState("");

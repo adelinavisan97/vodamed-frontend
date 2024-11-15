@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { confirmSignUp, signUp } from "../../authentication/auth-service";
+import { confirmSignUp, signUp } from "../../authentication/backend-service";
 
 const SignUpComponent: React.FC = () => {
     const [password, setPassword] = useState("");
