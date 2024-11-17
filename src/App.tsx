@@ -10,6 +10,7 @@ import About from "./pages/About";
 import { AuthProvider } from "./components/authentication/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Footer from "./components/Footer";
+import MedicineDetails from "./components/MedicationDetailsComponent";
 
 const App = () => {
     return (
@@ -25,6 +26,7 @@ const App = () => {
                     <Route path="/signin" element={<SignInComponent />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/medicine/:id" element={<MedicineDetails />} />
                 </Routes>
                 <Footer />
             </AuthProvider>

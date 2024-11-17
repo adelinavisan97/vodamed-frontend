@@ -43,7 +43,7 @@ const Menu = () => {
                         </Link>
                     </div>
                     <div className="absolute left-1/2 transform -translate-x-1/2">
-                        <Link to={"/"}>
+                        <Link to={"/dashboard"}>
                             <img
                                 src={`${import.meta.env.BASE_URL}logo.png`}
                                 alt="Logo"
@@ -86,7 +86,7 @@ const Menu = () => {
                     <div className="flex justify-between items-center p-4 bg-white text-gray-800">
                         <Hamburger toggled={isOpen} toggle={setOpen} />
                         <div className="absolute left-1/2 transform -translate-x-1/2">
-                            <Link to={"/"}>
+                            <Link to={"/dashboard"}>
                                 <img
                                     src={`${import.meta.env.BASE_URL}logo.png`}
                                     alt="Logo"
@@ -167,7 +167,7 @@ const Menu = () => {
                     </Link>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2">
-                    <Link to={"/"}>
+                    <Link to={"/dashboard"}>
                         <img
                             src={`${import.meta.env.BASE_URL}logo.png`}
                             alt="Logo"
@@ -219,7 +219,7 @@ const Menu = () => {
                 <div className="flex justify-between items-center p-4 bg-white text-gray-800">
                     <Hamburger toggled={isOpen} toggle={setOpen} />
                     <div className="absolute left-1/2 transform -translate-x-1/2">
-                        <Link to={"/"}>
+                        <Link to={"/dashboard"}>
                             <img
                                 src={`${import.meta.env.BASE_URL}logo.png`}
                                 alt="Logo"

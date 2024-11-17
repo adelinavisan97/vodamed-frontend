@@ -1,7 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Prescriptions from "../components/PrescriptionsComponent";
+import { getAllMedicines } from "../authentication/auth-service";
 
 const Dashboard = () => {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchMedicines = async () => {
+            try {
+                await getAllMedicines();
+                setLoading(false);
+            } catch (err: any) {
+                setError(err.message || "Failed to fetch medicines");
+                setLoading(false);
+            }
+        };
+
+        fetchMedicines();
+    }, []);
+
     return (
         <div className="bg-gray-100 min-h-screen">
             {/* Hero Section */}
@@ -17,7 +35,7 @@ const Dashboard = () => {
 
                 {/* Content */}
                 <div className="relative z-10 max-w-lg mx-auto py-40 flex flex-col items-center text-center">
-                    <h1 className="lg:text-7xl sm:text-6xl font-bold text-sky-600 mb-4">
+                    <h1 className="lg:text-7xl sm:text-6xl font-extrabold text-sky-600 mb-4">
                         Your online pharmacy
                     </h1>
                     <p className="text-gray-700 mb-6 lg:text-3xl sm:text-xl">

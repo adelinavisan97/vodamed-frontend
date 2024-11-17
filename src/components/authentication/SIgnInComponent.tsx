@@ -11,7 +11,7 @@ const SignInComponent: React.FC = () => {
     const { isAuthenticated } = useAuth();
 
     if (isAuthenticated) {
-        navigate("/");
+        navigate("/dashboard");
     }
     const handleSignIn = async () => {
         try {
@@ -21,7 +21,7 @@ const SignInComponent: React.FC = () => {
             // alert("Sign-in successful!");
             localStorage.setItem("userId", response.userId);
             console.log(localStorage.getItem("userId"));
-            navigate("/");
+            navigate("/dashboard");
             // Optionally, redirect the user or perform any other actions
             console.log(response);
         } catch (error) {

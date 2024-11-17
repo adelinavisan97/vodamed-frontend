@@ -1,24 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-// Define the interfaces
-interface Medicine {
-    medicine: string;
-    dosage: string;
-    quantity: number;
-}
-
-interface Prescription {
-    id: string;
-    patient: string;
-    doctor: string;
-    medicines: Medicine[];
-    prescriptionDate: string;
-    notes?: string;
-    createdAt?: string;
-    updatedAt?: string;
-}
-
 const Prescriptions = () => {
     const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
     const [loading, setLoading] = useState(true);
@@ -26,6 +8,17 @@ const Prescriptions = () => {
 
     // Retrieve the userId from local storage
     const userId = localStorage.getItem("userId"); // Adjust as necessary based on how you're storing userId
+
+    // Retrieve the cached medicines from localStorage
+    const cachedMedicines: MedicineDbModel[] = JSON.parse(
+        localStorage.getItem("medicines") || "[]"
+    );
+
+    // Helper function to get the medicine name by ID
+    const getMedicineNameById = (id: string): string => {
+        const medicine = cachedMedicines.find((med) => med._id === id);
+        return medicine ? medicine.name : "Unknown Medicine";
+    };
 
     useEffect(() => {
         const fetchPrescriptions = async () => {
@@ -89,7 +82,10 @@ const Prescriptions = () => {
                                             className="p-2 bg-white rounded border border-gray-100"
                                         >
                                             <h4 className="font-medium text-gray-700">
-                                                Medicine: {medicine.medicine}
+                                                Medicine:{" "}
+                                                {getMedicineNameById(
+                                                    medicine.medicine
+                                                )}
                                             </h4>
                                             <p className="text-sm text-gray-600">
                                                 Dosage: {medicine.dosage}
