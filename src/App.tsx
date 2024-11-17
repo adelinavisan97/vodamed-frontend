@@ -7,6 +7,7 @@ import Footer from "./components/Footer"
 import Dashboard from "./pages/Dashboard";
 import SignInComponent from "./components/authentication/SIgnInComponent";
 import Contact from './pages/Contact';
+import Medications from './pages/Medications';
 import { AuthProvider } from "./components/authentication/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignInComponent />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/medications" element={<Medications />} />
         </Routes>
         <Footer />
       </AuthProvider>
