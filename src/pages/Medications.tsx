@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Medications.css';
 
 const Medications = () => {
     // Placeholder for medication data, you can replace this with actual data from the backend
-    const [medications] = useState([
+    const [medications, setMedications] = useState([
         { id: 1, name: 'Medication 1', image: 'https://via.placeholder.com/150' },
         { id: 2, name: 'Medication 2', image: 'https://via.placeholder.com/150' },
         { id: 3, name: 'Medication 3', image: 'https://via.placeholder.com/150' },
