@@ -9,6 +9,8 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import { AuthProvider } from "./components/authentication/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PrescriptionAllocation from "./pages/prescriptionAllocation";
+
 
 const App = () => {
   return (
@@ -24,6 +26,7 @@ const App = () => {
           <Route path="/signin" element={<SignInComponent />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/prescriptions/allocate" element={<PrescriptionAllocation />} />
         </Routes>
       </AuthProvider>
     </div>
