@@ -49,7 +49,7 @@ export const getChatGPTResponse = async (prompt: string) => {
         throw new Error("No auth token found");
     }
     const response = await axios.post(
-        `${API_URL}/api/chatgpt`,
+        `${API_URL}/gpt`,
         { prompt },
         {
             headers: {
