@@ -10,6 +10,7 @@ import About from './pages/About';
 import { AuthProvider } from "./components/authentication/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PrescriptionAllocation from "./pages/prescriptionAllocation";
+import PrescriptionReview from "./pages/PrescriptionReview";
 
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/prescriptions/allocate" element={<PrescriptionAllocation />} />
+          <Route path="/prescriptions/review" element={<PrescriptionReview />} />
         </Routes>
       </AuthProvider>
     </div>
