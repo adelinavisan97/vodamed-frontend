@@ -11,9 +11,10 @@ import About from "./pages/About";
 import { AuthProvider } from "./components/authentication/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PrescriptionAllocation from "./pages/prescriptionAllocation";
-import MedicineDetails from "./components/MedicationDetailsComponent";
 import PrescriptionReview from "./pages/PrescriptionReview";
 import Medications from "./pages/Medications";
+import Chatbox from "./components/ChatbotComponent";
+import MedicineDetails from "./components/MedicationDetailsComponent";
 
 const App = () => {
     return (
@@ -40,6 +41,7 @@ const App = () => {
                     />
                     <Route path="/medications" element={<Medications />} />
                 </Routes>
+                <Chatbox />
             </AuthProvider>
         </div>
     );
