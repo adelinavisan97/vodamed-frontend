@@ -11,6 +11,7 @@ import About from "./pages/About";
 import { AuthProvider } from "./components/authentication/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PrescriptionAllocation from "./pages/prescriptionAllocation";
+import MedicineDetails from "./components/MedicationDetailsComponent";
 import PrescriptionReview from "./pages/PrescriptionReview";
 import Medications from "./pages/Medications";
 
@@ -21,13 +22,14 @@ const App = () => {
                 <Menu />
                 <Routes>
                     <Route
-                        path="/"
+                        path="/dashboard"
                         element={<ProtectedRoute element={<Dashboard />} />}
                     />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/signin" element={<SignInComponent />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/medicine/:id" element={<MedicineDetails />} />
                     <Route
                         path="/prescriptions/allocate"
                         element={<PrescriptionAllocation />}

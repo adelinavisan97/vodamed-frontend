@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_URL = "https://sea-turtle-app-9l4ak.ondigitalocean.app/api";
+// const API_URL = "http://localhost:443/api";
 
 export const signUp = async (
     email: string,
@@ -72,4 +73,14 @@ export const logout = async () => {
         }
     );
     localStorage.removeItem("authToken");
+};
+
+export const getAllMedicines = async () => {
+    const token = localStorage.getItem("authToken");
+    const response = await axios.get(`${API_URL}/medicine/getAllMedicine`, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+    localStorage.setItem("medicines", JSON.stringify(response.data));
 };
