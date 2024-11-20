@@ -10,7 +10,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import { AuthProvider } from "./components/authentication/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import PrescriptionAllocation from "./pages/prescriptionAllocation";
+import PrescriptionAllocation from "./pages/PrescriptionAllocation";
 import PrescriptionReview from "./pages/PrescriptionReview";
 import Medications from "./pages/Medications";
 import Chatbox from "./components/ChatbotComponent";
