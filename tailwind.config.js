@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Zain", "sans-serif"],
+        sans: ['Montserrat', 'sans-serif'],
       },
     },
   },
