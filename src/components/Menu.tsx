@@ -32,6 +32,9 @@ const Menu = () => {
                         <Hamburger toggled={isOpen} toggle={setOpen} />
                     </div>
                     <div className="hidden lg:flex space-x-5 p-3 text-xl">
+                        <Link to="/medications" className="hover:text-gray-400">
+                            Medications
+                        </Link>
                         <Link to="/about" className="hover:text-gray-400">
                             About
                         </Link>

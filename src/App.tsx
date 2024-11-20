@@ -3,13 +3,15 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import Menu from "./components/Menu";
+import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
 import SignInComponent from "./components/authentication/SIgnInComponent";
 import Contact from "./pages/Contact";
+import Medications from "./pages/Medications";
 import About from "./pages/About";
 import { AuthProvider } from "./components/authentication/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Footer from "./components/Footer";
+import PrescriptionAllocation from "./pages/prescriptionAllocation";
 import MedicineDetails from "./components/MedicationDetailsComponent";
 
 const App = () => {
@@ -27,8 +29,12 @@ const App = () => {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/medicine/:id" element={<MedicineDetails />} />
+                    <Route
+                        path="/prescriptions/allocate"
+                        element={<PrescriptionAllocation />}
+                    />
+                    <Route path="/medications" element={<Medications />} />
                 </Routes>
-                <Footer />
             </AuthProvider>
         </div>
     );
