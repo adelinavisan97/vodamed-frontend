@@ -26,12 +26,15 @@ const Menu = () => {
 
     if (!isAuthenticated) {
         return (
-            <div className="relative font-sans py-2 border-b border-gray-150">
+            <div className="relative font-sans py-2 border-b border-gray-150 z-50">
                 <div className="flex justify-between items-center px-6 py-2 text-gray-800">
                     <div className="lg:hidden">
                         <Hamburger toggled={isOpen} toggle={setOpen} />
                     </div>
                     <div className="hidden lg:flex space-x-5 p-3 text-xl">
+                        <Link to="/medications" className="hover:text-gray-400">
+                            Medications
+                        </Link>
                         <Link to="/about" className="hover:text-gray-400">
                             About
                         </Link>
@@ -43,7 +46,7 @@ const Menu = () => {
                         </Link>
                     </div>
                     <div className="absolute left-1/2 transform -translate-x-1/2">
-                        <Link to={"/"}>
+                        <Link to={"/dashboard"}>
                             <img
                                 src={`${import.meta.env.BASE_URL}logo.png`}
                                 alt="Logo"
@@ -86,7 +89,7 @@ const Menu = () => {
                     <div className="flex justify-between items-center p-4 bg-white text-gray-800">
                         <Hamburger toggled={isOpen} toggle={setOpen} />
                         <div className="absolute left-1/2 transform -translate-x-1/2">
-                            <Link to={"/"}>
+                            <Link to={"/dashboard"}>
                                 <img
                                     src={`${import.meta.env.BASE_URL}logo.png`}
                                     alt="Logo"
@@ -144,7 +147,7 @@ const Menu = () => {
     }
 
     return (
-        <div className="relative font-sans py-2">
+        <div className="relative font-sans py-2 z-50">
             <div className="flex justify-between items-center px-6 py-2 text-gray-800">
                 <div className="lg:hidden">
                     <Hamburger toggled={isOpen} toggle={setOpen} />
@@ -167,7 +170,7 @@ const Menu = () => {
                     </Link>
                 </div>
                 <div className="absolute left-1/2 transform -translate-x-1/2">
-                    <Link to={"/"}>
+                    <Link to={"/dashboard"}>
                         <img
                             src={`${import.meta.env.BASE_URL}logo.png`}
                             alt="Logo"
@@ -219,7 +222,7 @@ const Menu = () => {
                 <div className="flex justify-between items-center p-4 bg-white text-gray-800">
                     <Hamburger toggled={isOpen} toggle={setOpen} />
                     <div className="absolute left-1/2 transform -translate-x-1/2">
-                        <Link to={"/"}>
+                        <Link to={"/dashboard"}>
                             <img
                                 src={`${import.meta.env.BASE_URL}logo.png`}
                                 alt="Logo"
