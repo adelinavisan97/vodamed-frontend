@@ -7,12 +7,13 @@ import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
 import SignInComponent from "./components/authentication/SIgnInComponent";
 import Contact from "./pages/Contact";
-import Medications from "./pages/Medications";
 import About from "./pages/About";
 import { AuthProvider } from "./components/authentication/authContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PrescriptionAllocation from "./pages/prescriptionAllocation";
 import MedicineDetails from "./components/MedicationDetailsComponent";
+import PrescriptionReview from "./pages/PrescriptionReview";
+import Medications from "./pages/Medications";
 
 const App = () => {
     return (
@@ -32,6 +33,10 @@ const App = () => {
                     <Route
                         path="/prescriptions/allocate"
                         element={<PrescriptionAllocation />}
+                    />
+                    <Route
+                        path="/prescriptions/review"
+                        element={<PrescriptionReview />}
                     />
                     <Route path="/medications" element={<Medications />} />
                 </Routes>
