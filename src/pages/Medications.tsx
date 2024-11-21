@@ -1,26 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import './Medications.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Medications.css";
 
 const Medications = () => {
+    const navigate = useNavigate();
+
     // Placeholder for medication data, you can replace this with actual data from the backend
     const [medications, setMedications] = useState([
-        { id: 1, name: 'Medication 1', image: 'https://via.placeholder.com/150' },
-        { id: 2, name: 'Medication 2', image: 'https://via.placeholder.com/150' },
-        { id: 3, name: 'Medication 3', image: 'https://via.placeholder.com/150' },
-        { id: 4, name: 'Medication 4', image: 'https://via.placeholder.com/150' },
-        { id: 5, name: 'Medication 5', image: 'https://via.placeholder.com/150' },
-        { id: 6, name: 'Medication 6', image: 'https://via.placeholder.com/150' },
-        { id: 7, name: 'Medication 7', image: 'https://via.placeholder.com/150' },
-        { id: 8, name: 'Medication 8', image: 'https://via.placeholder.com/150' }
-    
+        { id: 1, name: "Medication 1", image: "https://via.placeholder.com/150" },
+        { id: 2, name: "Medication 2", image: "https://via.placeholder.com/150" },
+        { id: 3, name: "Medication 3", image: "https://via.placeholder.com/150" },
+        { id: 4, name: "Medication 4", image: "https://via.placeholder.com/150" },
+        { id: 5, name: "Medication 5", image: "https://via.placeholder.com/150" },
+        { id: 6, name: "Medication 6", image: "https://via.placeholder.com/150" },
+        { id: 7, name: "Medication 7", image: "https://via.placeholder.com/150" },
+        { id: 8, name: "Medication 8", image: "https://via.placeholder.com/150" },
     ]);
+
+    const handleAddToCart = () => {
+        // Navigate to the medrequest page
+        navigate("/medrequest");
+    };
 
     return (
         <div className="flex w-full">
             {/* Sidebar Filters */}
             <aside className="w-64 h-screen border-r p-4 sticky top-0 left-0">
                 <h3 className="AsideTitle">Filters</h3>
-                <br></br><p className="AsideSub">Method of Application</p><br></br>
+                <br />
+                <p className="AsideSub">Method of Application</p>
+                <br />
                 <div className="flex flex-col space-y-3">
                     <label className="flex items-center">
                         <input type="checkbox" className="mr-2" />
@@ -39,7 +48,9 @@ const Medications = () => {
                         Inhalation
                     </label>
                 </div>
-                <br></br><p className="AsideSub">Status</p><br></br>
+                <br />
+                <p className="AsideSub">Status</p>
+                <br />
                 <div className="flex flex-col space-y-3">
                     <label className="flex items-center">
                         <input type="checkbox" className="mr-2" />
@@ -50,7 +61,9 @@ const Medications = () => {
                         Over the Counter
                     </label>
                 </div>
-                <br></br><p className="AsideSub">Brand</p><br></br>
+                <br />
+                <p className="AsideSub">Brand</p>
+                <br />
                 <div className="flex flex-col space-y-3">
                     <label className="flex items-center">
                         <input type="checkbox" className="mr-2" />
@@ -80,10 +93,15 @@ const Medications = () => {
                             <img
                                 src={medication.image}
                                 alt={medication.name}
-                                className="w-full h-40 object-cover mb-4 "
+                                className="w-full h-40 object-cover mb-4"
                             />
-                            <h3 className="text-lg font-semibold mb-2 text-center">{medication.name}</h3>
-                            <button className="bg-blue-500 text-white py-2 px-4 hover:bg-blue-600 w-1/2">
+                            <h3 className="text-lg font-semibold mb-2 text-center">
+                                {medication.name}
+                            </h3>
+                            <button
+                                className="bg-blue-500 text-white py-2 px-4 hover:bg-blue-600 w-1/2"
+                                onClick={handleAddToCart} // Navigate to medrequest page
+                            >
                                 Add to Cart
                             </button>
                         </div>

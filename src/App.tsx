@@ -5,6 +5,7 @@ import SignUp from "./pages/SignUp";
 import Menu from "./components/Menu";
 import Footer from "./components/Footer";
 import Dashboard from "./pages/Dashboard";
+import MedRequestForm from "./pages/MedRequestForm";
 import SignInComponent from "./components/authentication/SIgnInComponent";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
@@ -40,8 +41,10 @@ const App = () => {
                         element={<PrescriptionReview />}
                     />
                     <Route path="/medications" element={<Medications />} />
+                    <Route path="/medrequest" element={<MedRequestForm />} />
                 </Routes>
                 <Chatbox />
+                <Footer />
             </AuthProvider>
         </div>
     );
