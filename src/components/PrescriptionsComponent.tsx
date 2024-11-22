@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../authentication/auth-service";
 
 const Prescriptions = () => {
     const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
@@ -24,13 +25,12 @@ const Prescriptions = () => {
         const fetchPrescriptions = async () => {
             try {
                 // Ensure you have the token available from your authentication process
-                const token = localStorage.getItem("authToken"); // Adjust where you get the token from
-
+                const token = localStorage.getItem("authToken");
                 const response = await axios.get(
-                    `https://sea-turtle-app-9l4ak.ondigitalocean.app/api/users/${userId}/getPrescriptions`,
+                    `${API_URL}/users/${userId}/getPrescriptions`,
                     {
                         headers: {
-                            Authorization: `Bearer ${token}`, // Send the token in the Authorization header
+                            Authorization: `Bearer ${token}`,
                         },
                     }
                 );

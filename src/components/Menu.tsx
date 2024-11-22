@@ -32,14 +32,8 @@ const Menu = () => {
                         <Hamburger toggled={isOpen} toggle={setOpen} />
                     </div>
                     <div className="hidden lg:flex space-x-5 p-3 text-xl">
-                        <Link to="/medications" className="hover:text-gray-400">
-                            Medications
-                        </Link>
                         <Link to="/about" className="hover:text-gray-400">
                             About
-                        </Link>
-                        <Link to="/shop" className="hover:text-gray-400">
-                            Shop
                         </Link>
                         <Link to="/contact" className="hover:text-gray-400">
                             Contact
@@ -131,11 +125,6 @@ const Menu = () => {
                             </Link>
                         </li>
                         <li className="hover:text-gray-400">
-                            <Link to="/shop" onClick={() => setOpen(false)}>
-                                Shop
-                            </Link>
-                        </li>
-                        <li className="hover:text-gray-400">
                             <Link to="/contact" onClick={() => setOpen(false)}>
                                 Contact
                             </Link>
@@ -156,13 +145,16 @@ const Menu = () => {
                     <Link to="/dashboard" className="hover:text-gray-400">
                         Dashboard
                     </Link>
-                    <Link to="/" className="hover:text-gray-400">
+                    <Link
+                        to="/prescriptions/review"
+                        className="hover:text-gray-400"
+                    >
                         My prescriptions
                     </Link>
                     <Link to="/about" className="hover:text-gray-400">
                         About
                     </Link>
-                    <Link to="/shop" className="hover:text-gray-400">
+                    <Link to="/medications" className="hover:text-gray-400">
                         Shop
                     </Link>
                     <Link to="/contact" className="hover:text-gray-400">
@@ -262,7 +254,10 @@ const Menu = () => {
                         </Link>
                     </li>
                     <li className="hover:text-gray-400">
-                        <Link to="/" onClick={() => setOpen(false)}>
+                        <Link
+                            to="/prescriptions/review"
+                            onClick={() => setOpen(false)}
+                        >
                             My prescriptions
                         </Link>
                     </li>
@@ -272,7 +267,7 @@ const Menu = () => {
                         </Link>
                     </li>
                     <li className="hover:text-gray-400">
-                        <Link to="/shop" onClick={() => setOpen(false)}>
+                        <Link to="/medications" onClick={() => setOpen(false)}>
                             Shop
                         </Link>
                     </li>

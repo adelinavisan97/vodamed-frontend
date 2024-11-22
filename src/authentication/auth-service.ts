@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://sea-turtle-app-9l4ak.ondigitalocean.app/api";
+export const API_URL = "https://sea-turtle-app-9l4ak.ondigitalocean.app/api";
 // const API_URL = "http://localhost:443/api";
 
 export const signUp = async (
