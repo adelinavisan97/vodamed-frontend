@@ -20,6 +20,10 @@ const PrescriptionAllocation = () => {
   const [patientId, setPatientId] = useState('');
   //State for all medications
   const [medicines, setMedicines] = useState<MedicineDbModel[]>([]);
+  //State for medication details
+  const [medicationDetails, setMedicationDetails] = useState<{
+    [key: string]: { dosage: string; quantity: string };
+  }>({});
   //State for selected medications
   const [selectedMedications, setSelectedMedications] = useState<string[]>([]);
   const [prescriptionDate, setPrescriptionDate] = useState('');
@@ -92,10 +96,21 @@ const PrescriptionAllocation = () => {
       (option) => option.value
     );
 
-    // Update state to add newly selected values without replacing the array
     setSelectedMedications((prevState) => {
-      // Merge the existing selections with the newly selected ones
-      return Array.from(new Set([...prevState, ...selectedValues])); // Remove duplicates
+      const newMedications = Array.from(
+        new Set([...prevState, ...selectedValues])
+      );
+      // Initialize dosage and quantity for newly selected medications
+      setMedicationDetails((prevDetails) => {
+        const updatedDetails = { ...prevDetails };
+        newMedications.forEach((id) => {
+          if (!updatedDetails[id]) {
+            updatedDetails[id] = { dosage: '', quantity: '' };
+          }
+        });
+        return updatedDetails;
+      });
+      return newMedications;
     });
   };
 
@@ -103,22 +118,41 @@ const PrescriptionAllocation = () => {
     e.preventDefault();
     // Handle form submission
 
+    // Ensure all medications have dosage and quantity
+    const incompleteMedications = selectedMedications.filter(
+      (id) => !medicationDetails[id]?.dosage || !medicationDetails[id]?.quantity
+    );
+
+    if (incompleteMedications.length > 0) {
+      alert('Please provide dosage and quantity for all selected medications.');
+      return;
+    }
+
     const prescription = {
       patient: patientId,
       doctor: localStorage.getItem('userId'),
-      medicines: [], //Not sure how to get this
+      medicines: selectedMedications.map((id) => ({
+        medicine: id,
+        dosage: medicationDetails[id].dosage,
+        quantity: medicationDetails[id].quantity,
+      })), //Not sure how to get this
       prescriptionDate: prescriptionDate,
       notes: notes,
       emailNotification,
     };
     console.log(prescription);
+
     const token = localStorage.getItem('authToken');
     try {
-      const response = await axios.post('', prescription, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.post(
+        `${API_URL}/users/createPrescription`,
+        prescription,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       console.log('Form submitted successfully');
       alert('Prescription allocated successfully!');
@@ -128,7 +162,6 @@ const PrescriptionAllocation = () => {
         'An error occured while allocating the prescription. Please try again later'
       );
     }
-    console.log('Form submitted');
   };
 
   return (
@@ -204,6 +237,7 @@ const PrescriptionAllocation = () => {
                     multiple
                     value={selectedMedications}
                     onChange={handleMedicationsChange}
+                    required
                   >
                     {medicines.map((medication) => (
                       <option key={medication._id} value={medication._id}>
@@ -308,29 +342,79 @@ const PrescriptionAllocation = () => {
                     (med) => med._id === medicationId
                   );
                   if (!medication) return null; // Skip if medication not found
+
                   return (
                     <div
                       key={medication._id}
-                      className="flex gap-4 pb-4 border-b"
+                      className="flex flex-col gap-4 pb-4 border-b"
                     >
-                      <img
-                        src={medication.image || '/placeholder.jpg'} // Default image if missing
-                        alt={medication.name}
-                        className="w-24 h-24 object-cover rounded bg-blue-100"
-                      />
-                      <div className="flex-1">
-                        <h4 className="font-semibold">{medication.name}</h4>
-                        <p className="text-sm text-gray-600">
-                          {medication.description}
-                        </p>
+                      <div className="flex items-center">
+                        <img
+                          src={medication.image || 'noImage.jpg'}
+                          alt={medication.name}
+                          className="w-24 h-24 object-cover rounded bg-blue-100 mr-4"
+                        />
+                        <div className="flex-1">
+                          <h4 className="font-semibold">{medication.name}</h4>
+                          <p className="text-sm text-gray-600">
+                            {medication.description}
+                          </p>
+                        </div>
+                      </div>
+                      {/* Dosage and Quantity Inputs */}
+                      <div className="flex gap-4">
+                        <div className="flex-1">
+                          <label className="block text-sm mb-1">Dosage</label>
+                          <input
+                            type="text"
+                            placeholder="e.g., 500mg"
+                            value={
+                              medicationDetails[medicationId]?.dosage || ''
+                            }
+                            onChange={(e) =>
+                              setMedicationDetails((prev) => ({
+                                ...prev,
+                                [medicationId]: {
+                                  ...prev[medicationId],
+                                  dosage: e.target.value,
+                                },
+                              }))
+                            }
+                            className="w-full border rounded p-2"
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <label className="block text-sm mb-1">Quantity</label>
+                          <input
+                            type="number"
+                            placeholder="e.g., 30"
+                            value={
+                              medicationDetails[medicationId]?.quantity || ''
+                            }
+                            onChange={(e) =>
+                              setMedicationDetails((prev) => ({
+                                ...prev,
+                                [medicationId]: {
+                                  ...prev[medicationId],
+                                  quantity: e.target.value,
+                                },
+                              }))
+                            }
+                            className="w-full border rounded p-2"
+                          />
+                        </div>
                       </div>
                       <button
-                        className="px-3 py-1 bg-orange-200 rounded-md hover:bg-orange-300 h-fit"
-                        onClick={() =>
+                        className="px-3 py-1 bg-orange-200 rounded-md hover:bg-orange-300 mt-2"
+                        onClick={() => {
                           setSelectedMedications((prev) =>
-                            prev.filter((id) => id !== medication._id)
-                          )
-                        }
+                            prev.filter((id) => id !== medicationId)
+                          );
+                          setMedicationDetails((prev) => {
+                            const { [medicationId]: _, ...rest } = prev;
+                            return rest;
+                          });
+                        }}
                       >
                         Remove
                       </button>
