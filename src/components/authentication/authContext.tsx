@@ -1,5 +1,7 @@
 // context/AuthContext.tsx
 import React, { createContext, useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 interface AuthContextProps {
     isAuthenticated: boolean;
@@ -12,6 +14,7 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
+    const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
         const token = localStorage.getItem("authToken");
         console.log("AuthProvider initial state, token:", token);
@@ -28,6 +31,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         localStorage.removeItem("authToken");
         setIsAuthenticated(false);
         console.log("Logged out, token removed");
+        navigate("/signin");
     };
 
     return (
