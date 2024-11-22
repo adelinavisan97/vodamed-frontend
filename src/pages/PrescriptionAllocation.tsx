@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { MedicineDbModel } from '../models/MedicationModels';
-
-const API_URL = 'http://localhost:443/api';
+import { API_URL } from '../authentication/auth-service';
 
 interface Patient {
   id: string;
