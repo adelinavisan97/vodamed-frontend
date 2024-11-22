@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Medications.css";
 import Spinner from "../components/Spinner";
 
@@ -27,7 +28,7 @@ const Medications = () => {
     const [error, setError] = useState<string | null>(null);
 
     // Filters state
-    const [typeFilter, setTypeFilter] = useState<string | null>(null); // 'prescription' or 'over-the-counter'
+    const [typeFilter, setTypeFilter] = useState<string | null>(null);
     const [priceRange, setPriceRange] = useState<{ min: string; max: string }>({
         min: "",
         max: "",
@@ -119,7 +120,7 @@ const Medications = () => {
 
             {/* Filters Section */}
             <aside
-                className={`p-4 border-b md:border-r md:h-screen md:sticky md:top-0 ${
+                className={`p-12 border-b md:border-r md:h-screen md:sticky md:top-0 ${
                     filtersVisible ? "block" : "hidden"
                 } md:block`}
             >
@@ -234,24 +235,28 @@ const Medications = () => {
             </aside>
 
             {/* Medications Grid */}
-            <main className="flex-1 p-6">
-                <h2 className="text-2xl font-semibold mb-6">Medications</h2>
+            <main className="flex-1 p-12">
+                <h2 className="text-5xl font-bold mb-16">Medications</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
                     {filteredMedications.map((medication) => (
                         <div
                             key={medication.id}
-                            className="border p-4 flex flex-col items-center"
+                            className="border p-6 flex flex-col items-center max-w-xs"
                         >
-                            <div className="w-full aspect-square overflow-hidden rounded-lg">
-                                <img
-                                    src={medication.image}
-                                    alt={medication.name}
-                                    className="w-full h-full object-contain"
-                                />
-                            </div>
-                            <h3 className="text-lg font-semibold mb-2 text-center">
-                                {medication.name}
-                            </h3>
+                            <Link to={`/medicine/${medication.id}`}>
+                                <div className="w-full aspect-square overflow-hidden rounded-lg">
+                                    <img
+                                        src={medication.image}
+                                        alt={medication.name}
+                                        className="w-full h-full object-contain"
+                                    />
+                                </div>
+                            </Link>
+                            <Link to={`/medicine/${medication.id}`}>
+                                <h3 className="text-lg font-semibold mb-2 text-center text-blue-500 hover:underline">
+                                    {medication.name}
+                                </h3>
+                            </Link>
                             <h2 className="text-lg font-semibold mb-2 text-center">
                                 £{medication.price}
                             </h2>
