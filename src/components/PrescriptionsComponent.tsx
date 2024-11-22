@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../authentication/auth-service";
+import Spinner from "./Spinner";
 
 const Prescriptions = () => {
     const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
@@ -7,7 +9,7 @@ const Prescriptions = () => {
     const [error, setError] = useState(null);
 
     // Retrieve the userId from local storage
-    const userId = localStorage.getItem("userId"); // Adjust as necessary based on how you're storing userId
+    const userId = localStorage.getItem("userId");
 
     // Retrieve the cached medicines from localStorage
     const cachedMedicines: MedicineDbModel[] = JSON.parse(
@@ -23,14 +25,12 @@ const Prescriptions = () => {
     useEffect(() => {
         const fetchPrescriptions = async () => {
             try {
-                // Ensure you have the token available from your authentication process
-                const token = localStorage.getItem("authToken"); // Adjust where you get the token from
-
+                const token = localStorage.getItem("authToken");
                 const response = await axios.get(
-                    `https://sea-turtle-app-9l4ak.ondigitalocean.app/api/users/${userId}/getPrescriptions`,
+                    `${API_URL}/users/${userId}/getPrescriptions`,
                     {
                         headers: {
-                            Authorization: `Bearer ${token}`, // Send the token in the Authorization header
+                            Authorization: `Bearer ${token}`,
                         },
                     }
                 );
@@ -47,7 +47,7 @@ const Prescriptions = () => {
     }, [userId]);
 
     if (loading) {
-        return <p>Loading prescriptions...</p>;
+        return <Spinner />;
     }
 
     if (error) {

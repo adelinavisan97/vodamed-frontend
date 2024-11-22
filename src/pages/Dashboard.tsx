@@ -34,7 +34,7 @@ const Dashboard = () => {
                 ></div>
 
                 {/* Content */}
-                <div className="relative z-10 max-w-lg mx-auto py-40 flex flex-col items-center text-center">
+                <div className="relative max-w-lg mx-auto py-40 flex flex-col items-center text-center">
                     <h1 className="lg:text-7xl sm:text-6xl font-extrabold text-sky-600 mb-4">
                         Your online pharmacy
                     </h1>

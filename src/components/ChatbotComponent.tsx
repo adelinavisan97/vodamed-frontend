@@ -62,7 +62,6 @@ const Chatbox = () => {
                 className="fixed bottom-6 right-6 w-24 h-24 rounded-full cursor-pointer bg-blue-500 flex items-center justify-center"
                 onClick={handleOpen}
             >
-                {/* Replace this iframe with your animation */}
                 <iframe
                     src="https://lottie.host/embed/66ee07a2-90ba-4c61-a2f3-29ff00fd30f6/xNcqnacP9A.json"
                     className="w-full h-full rounded-full pointer-events-none"
