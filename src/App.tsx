@@ -42,6 +42,7 @@ const App = () => {
                     <Route path="/medications" element={<Medications />} />
                 </Routes>
                 <Chatbox />
+                <Footer />
             </AuthProvider>
         </div>
     );
