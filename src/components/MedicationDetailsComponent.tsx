@@ -1,8 +1,6 @@
 // MedicineDetails.tsx
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { getAllMedicines } from "../authentication/auth-service";
-import Spinner from "./Spinner";
 
 const MedicineDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -57,9 +55,19 @@ const MedicineDetails: React.FC = () => {
                                 </ul>
                             </div>
                         )}
-                    <button className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
-                        Add to basket
+
+                    {/* Add to Basket Button */}
+                    <button
+                        className={`py-2 px-4 rounded-lg md:w-1/5 mt-2 ${
+                            medicine.stock > 0
+                                ? "bg-blue-600 text-white hover:bg-blue-700"
+                                : "bg-gray-300 text-gray-700 cursor-not-allowed"
+                        }`}
+                        disabled={medicine.stock === 0}
+                    >
+                        {medicine.stock > 0 ? "Add to basket" : "Out of Stock"}
                     </button>
+
                     <div className="mt-4">
                         <p className="font-semibold">Description:</p>
                         <p className="text-gray-600">
