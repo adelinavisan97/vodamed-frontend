@@ -1,6 +1,5 @@
 // context/AuthContext.tsx
-import React, { createContext, useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { createContext, useContext, useState } from "react";
 
 interface AuthContextProps {
     isAuthenticated: boolean;
@@ -13,30 +12,22 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     children,
 }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        console.log("AuthProvider useEffect, token:", token); // Log token value
-        if (token) {
-            setIsAuthenticated(true);
-            console.log("AuthProvider useEffect, isAuthenticated set to true");
-        }
-    }, []);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+        const token = localStorage.getItem("authToken");
+        console.log("AuthProvider initial state, token:", token);
+        return !!token;
+    });
 
     const login = (token: string) => {
-        localStorage.setItem("token", token);
+        localStorage.setItem("authToken", token);
         setIsAuthenticated(true);
         console.log("Logged in, token set:", token);
-        navigate("/dashboard"); // Redirect to home page after login
     };
 
     const logout = () => {
-        localStorage.removeItem("token");
+        localStorage.removeItem("authToken");
         setIsAuthenticated(false);
         console.log("Logged out, token removed");
-        navigate("/signin"); // Redirect to sign-in page after logout
     };
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn } from "../../authentication/auth-service";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "./authContext";
@@ -10,9 +10,12 @@ const SignInComponent: React.FC = () => {
     const { login } = useAuth();
     const { isAuthenticated } = useAuth();
 
-    if (isAuthenticated) {
-        navigate("/dashboard");
-    }
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/dashboard");
+        }
+    }, [isAuthenticated, navigate]);
+
     const handleSignIn = async () => {
         try {
             const response = await signIn(email, password);
@@ -21,7 +24,7 @@ const SignInComponent: React.FC = () => {
             // alert("Sign-in successful!");
             localStorage.setItem("userId", response.userId);
             console.log(localStorage.getItem("userId"));
-            navigate("/dashboard");
+            // navigate("/dashboard");
             // Optionally, redirect the user or perform any other actions
             console.log(response);
         } catch (error) {

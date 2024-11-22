@@ -241,10 +241,10 @@ const Medications = () => {
                     {filteredMedications.map((medication) => (
                         <div
                             key={medication.id}
-                            className="border p-6 flex flex-col items-center max-w-xs"
+                            className="border p-6 flex flex-col items-center max-w-xs bg-gray-50"
                         >
                             <Link to={`/medicine/${medication.id}`}>
-                                <div className="w-full aspect-square overflow-hidden rounded-lg">
+                                <div className="w-full aspect-square overflow-hidden rounded-lg shadow-md mb-4">
                                     <img
                                         src={medication.image}
                                         alt={medication.name}
@@ -253,7 +253,7 @@ const Medications = () => {
                                 </div>
                             </Link>
                             <Link to={`/medicine/${medication.id}`}>
-                                <h3 className="text-lg font-semibold mb-2 text-center text-blue-500 hover:underline">
+                                <h3 className="text-lg font-semibold mb-2 text-center text-blue-800 hover:underline">
                                     {medication.name}
                                 </h3>
                             </Link>
