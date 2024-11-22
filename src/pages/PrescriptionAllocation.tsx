@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { MedicineDbModel } from '../models/MedicationModels';
 
@@ -33,27 +33,7 @@ const PrescriptionAllocation = () => {
   const [emailNotification, setEmailNotification] = useState(false);
   //const [selectedHealth, setSelectedHealth] = useState('');
 
-  // Sample medication data
-  // const [medications] = useState([
-  //   {
-  //     id: 1,
-  //     name: 'Name',
-  //     description: 'Body text for whatever you\'d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story. - Description',
-  //     image: '/api/placeholder/150/150'
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Name',
-  //     description: 'Body text for whatever you\'d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story. - Description',
-  //     image: '/api/placeholder/150/150'
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'Name',
-  //     description: 'Body text for whatever you\'d like to say. Add main takeaway points, quotes, anecdotes, or even a very very short story. - Description',
-  //     image: '/api/placeholder/150/150'
-  //   }
-  // ]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     //On opening the page will need to call get all patient
@@ -156,6 +136,8 @@ const PrescriptionAllocation = () => {
 
       console.log('Form submitted successfully');
       alert('Prescription allocated successfully!');
+
+      navigate('/dashboard');
     } catch (error) {
       console.error('Error submitting form: ', error);
       alert(
