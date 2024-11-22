@@ -21,6 +21,8 @@ const SignInComponent: React.FC = () => {
             // alert("Sign-in successful!");
             localStorage.setItem("userId", response.userId);
             console.log(localStorage.getItem("userId"));
+            localStorage.setItem("isDoctor", response.isDoctor)
+            console.log(localStorage.getItem("isDoctor"))
             navigate("/dashboard");
             // Optionally, redirect the user or perform any other actions
             console.log(response);
