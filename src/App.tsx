@@ -37,7 +37,9 @@ const App = () => {
                     />
                     <Route
                         path="/prescriptions/review"
-                        element={<PrescriptionReview />}
+                        element={
+                            <ProtectedRoute element={<PrescriptionReview />} />
+                        }
                     />
                     <Route path="/medications" element={<Medications />} />
                 </Routes>
