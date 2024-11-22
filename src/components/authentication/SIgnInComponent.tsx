@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { signIn } from "../../authentication/auth-service";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "./authContext";
+import { initializeBasket, addToBasket, getBasket } from "../BasketFunctions";
 
 const SignInComponent: React.FC = () => {
     const [email, setEmail] = useState("");
@@ -13,22 +14,21 @@ const SignInComponent: React.FC = () => {
     if (isAuthenticated) {
         navigate("/dashboard");
     }
+
     const handleSignIn = async () => {
         try {
             const response = await signIn(email, password);
             localStorage.setItem("authToken", response.token);
-            login(response.token);
-            // alert("Sign-in successful!");
             localStorage.setItem("userId", response.userId);
-            console.log(localStorage.getItem("userId"));
+    
+            // Initialize an empty basket
+            initializeBasket();
+    
+            login(response.token);
             navigate("/dashboard");
-            // Optionally, redirect the user or perform any other actions
-            console.log(response);
         } catch (error) {
             console.error("Error signing in:", error);
-            alert(
-                "Sign-in failed. Please check your credentials and try again."
-            );
+            alert("Sign-in failed. Please check your credentials and try again.");
         }
     };
 
