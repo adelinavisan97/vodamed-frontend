@@ -1,4 +1,4 @@
-interface MedicineDbModel {
+export interface MedicineDbModel {
     _id?: string;
     name: string;
     description?: string;
@@ -12,13 +12,13 @@ interface MedicineDbModel {
     updatedAt: Date;
 }
 
-interface Medicine {
+export interface Medicine {
     medicine: string;
     dosage: string;
     quantity: number;
 }
 
-interface Prescription {
+export interface Prescription {
     id: string;
     patient: string;
     doctor: string;
