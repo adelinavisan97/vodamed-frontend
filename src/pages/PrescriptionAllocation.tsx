@@ -66,7 +66,6 @@ const PrescriptionAllocation = () => {
     const cachedMedicines = JSON.parse(
       localStorage.getItem('medicines') || '[]'
     );
-    console.log(cachedMedicines);
     setMedicines(cachedMedicines);
   }, []);
 
@@ -120,7 +119,6 @@ const PrescriptionAllocation = () => {
       notes: notes,
       emailNotification,
     };
-    console.log(prescription);
 
     const token = localStorage.getItem('authToken');
     try {
