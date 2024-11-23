@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn } from "../../authentication/auth-service";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "./authContext";
@@ -11,21 +11,25 @@ const SignInComponent: React.FC = () => {
     const { login } = useAuth();
     const { isAuthenticated } = useAuth();
 
-    if (isAuthenticated) {
-        navigate("/dashboard");
-    }
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/dashboard");
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleSignIn = async () => {
         try {
             const response = await signIn(email, password);
             localStorage.setItem("authToken", response.token);
             localStorage.setItem("userId", response.userId);
-    
-            // Initialize an empty basket
-            initializeBasket();
-    
-            login(response.token);
-            navigate("/dashboard");
+            console.log(localStorage.getItem("userId"));
+            localStorage.setItem("isDoctor", response.isDoctor)
+            console.log(localStorage.getItem("isDoctor"))
+             // Initialize an empty basket
+             initializeBasket();
+            // navigate("/dashboard");
+            // Optionally, redirect the user or perform any other actions
+            console.log(response);
         } catch (error) {
             console.error("Error signing in:", error);
             alert("Sign-in failed. Please check your credentials and try again.");
