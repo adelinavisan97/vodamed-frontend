@@ -2,17 +2,39 @@
 import { Sling as Hamburger } from "hamburger-react";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaSearch, FaTimes } from "react-icons/fa";
+import { FaSearch, FaShoppingCart, FaTimes } from "react-icons/fa";
 import { useAuth } from "../components/authentication/authContext";
+import { getBasket } from "./BasketFunctions";
 
 const Menu = () => {
     const [isOpen, setOpen] = useState(false);
     const { isAuthenticated, logout } = useAuth();
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [basketCount, setBasketCount] = useState(0);
 
     useEffect(() => {
         console.log("Menu component, isAuthenticated:", isAuthenticated);
+        // Initialize basket
+        const updateBasketCount = () => {
+            const basket = getBasket();
+            const count = basket.reduce((total, item) => total + item.quantity, 0);
+            setBasketCount(count);
+          };
+      
+          updateBasketCount();
+      
+          const handleStorageChange = () => {
+            updateBasketCount();
+          };
+      
+          window.addEventListener("storage", handleStorageChange);
+      
+          return () => {
+            window.removeEventListener("storage", handleStorageChange);
+          };
     }, [isAuthenticated]);
+
+     
 
     const handleLogout = () => {
         logout();
@@ -91,7 +113,7 @@ const Menu = () => {
                                 />
                             </Link>
                         </div>
-                        <div className="relative">
+                        {/* <div className="relative">
                             {!isSearchOpen && (
                                 <FaSearch
                                     className="text-2xl cursor-pointer"
@@ -116,7 +138,7 @@ const Menu = () => {
                                     />
                                 </form>
                             )}
-                        </div>
+                        </div> */}
                     </div>
                     <ul className="flex flex-col items-left pl-7 py-4 space-y-4 text-xl">
                         <li className="hover:text-gray-400">
@@ -172,7 +194,7 @@ const Menu = () => {
                 </div>
 
                 <div className="flex items-center space-x-4 text-xl">
-                    {!isSearchOpen && (
+                    {/* {!isSearchOpen && (
                         <FaSearch
                             className="cursor-pointer"
                             onClick={() => setIsSearchOpen(true)}
@@ -195,16 +217,24 @@ const Menu = () => {
                                 onClick={() => setIsSearchOpen(false)}
                             />
                         </form>
-                    )}
+                    )} */}
+                    <Link to="/medrequest" aria-label="Basket" className="relative">
+                        <FaShoppingCart className="cursor-pointer hover:text-gray-400" />
+                        {basketCount > 0 && (
+                        <span className="absolute -top-1 -right-2 bg-red-500 text-white rounded-full h-4 w-4 flex items-center justify-center text-xs">
+                            {basketCount}
+                        </span>
+                        )}
+                    </Link>
                     {isAuthenticated && (
                         <button
-                            onClick={handleLogout}
-                            className="hover:text-gray-400 focus:outline-none font-bold"
+                        onClick={handleLogout}
+                        className="hover:text-gray-400 focus:outline-none"
                         >
-                            Logout
+                        Logout
                         </button>
                     )}
-                </div>
+                    </div>
             </div>
             <nav
                 className={`lg:hidden absolute top-0 left-0 w-full bg-white text-gray-800 transform ${
@@ -222,7 +252,7 @@ const Menu = () => {
                             />
                         </Link>
                     </div>
-                    {!isSearchOpen && (
+                    {/* {!isSearchOpen && (
                         <FaSearch
                             className="text-2xl cursor-pointer"
                             onClick={() => setIsSearchOpen(true)}
@@ -245,7 +275,10 @@ const Menu = () => {
                                 onClick={() => setIsSearchOpen(false)}
                             />
                         </form>
-                    )}
+                    )} */}
+                    <Link to="/medrequest" aria-label="Basket">
+                        <FaShoppingCart className="cursor-pointer hover:text-gray-400" />
+                    </Link>
                 </div>
                 <ul className="flex flex-col items-left pl-7 py-4 space-y-4 text-xl">
                     <li className="hover:text-gray-400">
