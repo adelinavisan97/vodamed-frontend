@@ -1,6 +1,8 @@
 // MedicineDetails.tsx
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { addToBasket } from "./BasketFunctions";
+import { MedicineDbModel } from "../models/MedicationModels";
 
 const MedicineDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -13,7 +15,16 @@ const MedicineDetails: React.FC = () => {
     // Find the selected medicine by ID
     const medicine = cachedMedicines.find((med) => med._id === id);
 
+    const [quantity, setQuantity] = useState<number>(1);
+
     if (!medicine) return <p>Medicine not found.</p>;
+
+    const handleAddToBasket = () => {
+        if (medicine._id) {
+            addToBasket(medicine._id, quantity);
+            window.dispatchEvent(new Event("storage"));
+        }
+    };
 
     return (
         <div className="p-8 bg-white rounded-lg shadow-md m-10 mb-24">
@@ -55,18 +66,36 @@ const MedicineDetails: React.FC = () => {
                                 </ul>
                             </div>
                         )}
-
+                    {/* Quantity Selector */}
+                    <div className="flex items-center mt-4">
+                            <label htmlFor="quantity" className="mr-2">Quantity:</label>
+                            <input
+                            type="number"
+                            id="quantity"
+                            min="1"
+                            max={medicine.stock}
+                            value={quantity}
+                            onChange={(e) => {
+                                const value = parseInt(e.target.value);
+                                if (!isNaN(value) && value >= 1 && value <= medicine.stock) {
+                                setQuantity(value);
+                                }
+                            }}
+                            className="border rounded p-1 w-16 text-center"
+                            />
+                        </div>
                     {/* Add to Basket Button */}
                     <button
+                        onClick={handleAddToBasket}
                         className={`py-2 px-4 rounded-lg md:w-1/5 mt-2 ${
                             medicine.stock > 0
-                                ? "bg-blue-600 text-white hover:bg-blue-700"
-                                : "bg-gray-300 text-gray-700 cursor-not-allowed"
+                            ? "bg-blue-600 text-white hover:bg-blue-700"
+                            : "bg-gray-300 text-gray-700 cursor-not-allowed"
                         }`}
                         disabled={medicine.stock === 0}
-                    >
+                        >
                         {medicine.stock > 0 ? "Add to basket" : "Out of Stock"}
-                    </button>
+                        </button>
 
                     <div className="mt-4">
                         <p className="font-semibold">Description:</p>
