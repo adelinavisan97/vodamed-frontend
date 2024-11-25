@@ -165,37 +165,6 @@ const PrescriptionReview = () => {
             </div>
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="font-bold text-lg mb-4">Your health</h3>
-            <ul className="space-y-2">
-              <li><Link to="/health-history" className="text-gray-600 hover:text-blue-500">Health history</Link></li>
-              <li><Link to="/prescriptions" className="text-gray-600 hover:text-blue-500">Current prescriptions</Link></li>
-              <li><Link to="/symptoms" className="text-gray-600 hover:text-blue-500">Check your symptoms</Link></li>
-              <li><Link to="/vaccinations" className="text-gray-600 hover:text-blue-500">Book vaccinations</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-lg mb-4">External resources</h3>
-            <ul className="space-y-2">
-              <li><a href="https://digital.nhs.uk" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-blue-500">NHS Digital</a></li>
-              <li><Link to="/find-gp" className="text-gray-600 hover:text-blue-500">Find my GP</Link></li>
-              <li><Link to="/find-pharmacy" className="text-gray-600 hover:text-blue-500">Find my pharmacy</Link></li>
-              <li><Link to="/medplan" className="text-gray-600 hover:text-blue-500">MedPlan</Link></li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-lg mb-4">Contact us</h3>
-            <ul className="space-y-2">
-              <li><a href="tel:02005542453" className="text-gray-600 hover:text-blue-500">02005542453</a></li>
-              <li><a href="mailto:vodamed@contact.com" className="text-gray-600 hover:text-blue-500">vodamed@contact.com</a></li>
-            </ul>
-          </div>
-        </div>
       </main>
     </div>
   );
