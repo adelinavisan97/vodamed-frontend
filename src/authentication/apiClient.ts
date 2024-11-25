@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useAuth } from "../components/authentication/authContext";
 
-export const API_URL = 'https://sea-turtle-app-9l4ak.ondigitalocean.app/api';
-// export const API_URL = 'http://localhost:443/api';
+// export const API_URL = 'https://sea-turtle-app-9l4ak.ondigitalocean.app/api';
+export const API_URL = 'http://localhost:443/api';
 
 // Create an Axios instance
 const apiClient = axios.create({
