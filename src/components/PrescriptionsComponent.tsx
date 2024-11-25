@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { API_URL } from "../authentication/auth-service";
+import { API_URL } from "../authentication/apiClient";
 import Spinner from "./Spinner";
+import { MedicineDbModel, Prescription } from "../models/MedicationModels";
 
 const Prescriptions = () => {
     const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);

@@ -15,6 +15,7 @@ import PrescriptionReview from "./pages/PrescriptionReview";
 import Medications from "./pages/Medications";
 import Chatbox from "./components/ChatbotComponent";
 import MedicineDetails from "./components/MedicationDetailsComponent";
+import MedRequestForm from "./pages/MedRequestForm";
 
 const App = () => {
     return (
@@ -42,6 +43,7 @@ const App = () => {
                         }
                     />
                     <Route path="/medications" element={<Medications />} />
+                    <Route path="/medrequest" element={<MedRequestForm />} />
                 </Routes>
                 <Chatbox />
                 <Footer />
