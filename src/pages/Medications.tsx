@@ -36,6 +36,9 @@ const Medications = () => {
     });
     const [inStockOnly, setInStockOnly] = useState<boolean>(false);
 
+    // Check if user is a doctor
+    const [isDoctor, setIsDoctor] = useState<boolean>(false);
+
     // Mobile Filters Toggle
     const [filtersVisible, setFiltersVisible] = useState<boolean>(false);
 
@@ -61,7 +64,7 @@ const Medications = () => {
                     type: medicine.type,
                 })
             );
-
+  
             setMedications(formattedMedicines);
             setFilteredMedications(formattedMedicines);
         } catch (err) {
@@ -70,7 +73,11 @@ const Medications = () => {
         } finally {
             setLoading(false);
         }
-    }, []);
+            // Check if user is a doctor
+        const isDoctorValue = localStorage.getItem("isDoctor") === "true";
+        setIsDoctor(isDoctorValue);
+  }, []);
+
     
 
     const applyFilters = () => {
@@ -231,11 +238,11 @@ const Medications = () => {
     
           {/* Medications Grid */}
           <main className="flex-1 p-12">
-            <h2 className="text-5xl font-bold mb-16 text-center">Medications</h2>
+            <h2 className="text-5xl font-bold mb-16">Medications</h2>
             {filteredMedications.length === 0 ? (
               <p className="text-center text-gray-600">No medications found.</p>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
                 {filteredMedications.map((medication) => (
                   <div
                     key={medication.id}
@@ -267,20 +274,24 @@ const Medications = () => {
                         <h2 className="text-2xl font-bold text-blue-800 mb-4">
                           £{medication.price.toFixed(2)}
                         </h2>
-                        <button
-                          onClick={() => {
-                            addToBasket(medication.id, 1);
-                            window.dispatchEvent(new Event('storage'));
-                          }}
-                          className={`w-full py-2 px-4 rounded-lg ${
-                            medication.stock > 0
-                              ? 'bg-blue-500 text-white hover:bg-blue-600'
-                              : 'bg-gray-300 text-gray-700 cursor-not-allowed'
-                          }`}
-                          disabled={medication.stock === 0}
-                        >
-                          {medication.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
-                        </button>
+                        {(isDoctor || medication.type !== "prescription") && (
+                      <button
+                        onClick={() => {
+                          addToBasket(medication.id, 1);
+                          window.dispatchEvent(new Event("storage"));
+                        }}
+                        className={`w-full py-2 px-4 rounded-lg ${
+                          medication.stock > 0
+                            ? "bg-blue-500 text-white hover:bg-blue-600"
+                            : "bg-gray-300 text-gray-700 cursor-not-allowed"
+                        }`}
+                        disabled={medication.stock === 0}
+                      >
+                        {medication.stock > 0
+                          ? "Add to Cart"
+                          : "Out of Stock"}
+                      </button>
+                    )}
                       </div>
                     </div>
                   </div>
