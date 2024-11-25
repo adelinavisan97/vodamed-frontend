@@ -15,7 +15,7 @@
     "dependencies": {
         "@aws-sdk/client-cognito-identity-provider": "^3.616.0",
         "@aws-sdk/credential-provider-cognito-identity": "^3.616.0",
-        "axios": "^1.7.2",
+        "axios": "^1.7.7",
         "crypto": "^1.0.1",
         "dotenv": "^16.4.5",
         "hamburger-react": "^2.5.1",
