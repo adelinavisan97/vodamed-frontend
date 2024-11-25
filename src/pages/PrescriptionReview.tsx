@@ -1,28 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../components/authentication/authContext";
-import apiClient from "../authentication/apiClient";
-
-interface Medicine {
-  medicine: string; // Medicine ID
-  dosage: string;   // Dosage information
-  quantity: number; // Quantity prescribed
-}
-
-interface Prescription {
-  doctor: string;            // Doctor ID
-  medicines: Medicine[];     // List of medicines
-  prescriptionDate: string;  // Prescription date
-  notes?: string;            // Optional notes
-}
+import { PrescriptionDisplay, prescriptionService } from "../services/prescriptionService";
+import Spinner from "../components/Spinner";
 
 const PrescriptionReview = () => {
   const { isAuthenticated, isDoctor } = useAuth();
-  const [prescriptions, setPrescriptions] = useState<Prescription[]>([]);
+  const [prescriptions, setPrescriptions] = useState<PrescriptionDisplay[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [medicines, setMedicines] = useState<Record<string, string>>({}); // Medicine ID -> Name
-  const [doctorNames, setDoctorNames] = useState<Record<string, string>>({}); // Doctor ID -> Name
 
   if (!isAuthenticated) {
     return <Navigate to="/signin" replace />;
@@ -33,76 +19,34 @@ const PrescriptionReview = () => {
   }
 
   useEffect(() => {
-    const fetchMedicines = () => {
-      try {
-        const cachedMedicines = JSON.parse(localStorage.getItem("medicines") || "[]");
-        const medicineMap: Record<string, string> = {};
-        cachedMedicines.forEach((med: { _id: string; name: string }) => {
-          medicineMap[med._id] = med.name;
-        });
-        setMedicines(medicineMap);
-      } catch (err) {
-        console.error("Error loading medicines from localStorage:", err);
-      }
-    };
-
-    const fetchDoctorNames = async (doctorIds: string[]) => {
-      const uniqueIds = [...new Set(doctorIds)];
-      const names: Record<string, string> = {};
-
-      for (const id of uniqueIds) {
-        if (!id) continue; // Skip empty IDs
-        try {
-          const response = await apiClient.get(`/users/info/${id}`);
-          const doctorName = `${response.data.givenName} ${response.data.familyName}`;
-          names[id] = doctorName;
-        } catch (err) {
-          console.error(`Error fetching doctor name for ID ${id}:`, err);
-          names[id] = "Unknown";
-        }
-      }
-
-      setDoctorNames(names);
-    };
-
     const fetchPrescriptions = async () => {
       try {
         const token = localStorage.getItem("authToken");
         const userId = localStorage.getItem("userId");
 
-        if (!userId) {
-          setError("User ID is missing from localStorage.");
+        if (!userId || !token) {
+          setError("User ID or token is missing.");
           setLoading(false);
           return;
         }
 
-        const response = await apiClient.get(`/users/${userId}/getPrescriptions`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        setPrescriptions(response.data);
-
-        // Extract unique doctor IDs and fetch their names
-        const doctorIds = response.data.map((prescription: Prescription) => prescription.doctor);
-        await fetchDoctorNames(doctorIds);
+        const prescriptions = await prescriptionService.getUserPrescriptions(token, userId);
+        setPrescriptions(prescriptions);
       } catch (err) {
         console.error("Error fetching prescriptions:", err);
-        setError("Failed to fetch prescriptions");
+        setError("Failed to fetch prescriptions.");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchMedicines();
     fetchPrescriptions();
   }, []);
 
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-xl">Loading prescriptions...</div>
+        <Spinner />
       </div>
     );
   }
@@ -166,15 +110,15 @@ const PrescriptionReview = () => {
               {prescriptions.map((prescription, index) => (
                 <tr key={index}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {new Date(prescription.prescriptionDate).toLocaleDateString()}
+                    {prescription.date}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                    {doctorNames[prescription.doctor] || "Fetching..."}
+                    {prescription.doctorName}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                     <ul className="list-disc list-inside">
                       {prescription.medicines.map((medicine, idx) => (
-                        <li key={idx}>{medicines[medicine.medicine] || "Unknown"}</li>
+                        <li key={idx}>{medicine.name}</li>
                       ))}
                     </ul>
                   </td>
