@@ -119,6 +119,7 @@ const MedRequestForm = () => {
       orderDate,
       shippingAddress,
       paymentMethod,
+      email
     };
 
     try {
