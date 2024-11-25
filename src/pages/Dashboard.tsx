@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [isDoctor, setIsDoctor] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchMedicines = async () => {
@@ -17,7 +18,8 @@ const Dashboard = () => {
                 setLoading(false);
             }
         };
-
+        const isDoctorValue = localStorage.getItem("isDoctor") === "true";
+        setIsDoctor(isDoctorValue);
         fetchMedicines();
     }, []);
 
@@ -44,7 +46,9 @@ const Dashboard = () => {
                     </p>
                     <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                         <button className="bg-orange-300 text-white font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600 hover:rounded-full">
-                        <Link to={`/prescriptions/review`}>View prescriptions</Link>
+                        <Link to={`/prescriptions/review`}>
+                            {isDoctor ? 'Create prescriptions' : 'View prescriptions'}
+                        </Link>
                         </button>
                         <button className="bg-sky-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 hover:rounded-full">
                         <Link to={`/medications`}>Order medications</Link>
