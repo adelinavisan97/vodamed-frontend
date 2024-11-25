@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Prescriptions from "../components/PrescriptionsComponent";
 import { getAllMedicines } from "../authentication/auth-service";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
     const [loading, setLoading] = useState(true);
@@ -43,10 +44,10 @@ const Dashboard = () => {
                     </p>
                     <div className="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
                         <button className="bg-orange-300 text-white font-semibold py-2 px-4 rounded-lg hover:bg-yellow-600 hover:rounded-full">
-                            View prescriptions
+                        <Link to={`/prescriptions/review`}>View prescriptions</Link>
                         </button>
                         <button className="bg-sky-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 hover:rounded-full">
-                            Order medications
+                        <Link to={`/medications`}>Order medications</Link>
                         </button>
                     </div>
                 </div>
