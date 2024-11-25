@@ -11,9 +11,13 @@ const Menu = () => {
     const { isAuthenticated, logout } = useAuth();
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [basketCount, setBasketCount] = useState(0);
+    const [isDoctor, setIsDoctor] = useState<boolean>(false);
 
     useEffect(() => {
         console.log("Menu component, isAuthenticated:", isAuthenticated);
+
+        const isDoctorValue = localStorage.getItem("isDoctor") === "true";
+        setIsDoctor(isDoctorValue);
         // Initialize basket
         const updateBasketCount = () => {
             const basket = getBasket();
@@ -32,6 +36,7 @@ const Menu = () => {
           return () => {
             window.removeEventListener("storage", handleStorageChange);
           };
+
     }, [isAuthenticated]);
 
      
@@ -40,11 +45,11 @@ const Menu = () => {
         logout();
     };
 
-    const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const searchQuery = event.currentTarget.search.value;
-        console.log("Search Query:", searchQuery);
-    };
+   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+       event.preventDefault();
+       const searchQuery = event.currentTarget.search.value;
+       console.log("Search Query:", searchQuery);
+   };
 
     if (!isAuthenticated) {
         return (
@@ -157,41 +162,41 @@ const Menu = () => {
         );
     }
 
-    return (
-        <div className="relative font-sans py-2 z-50">
-            <div className="flex justify-between items-center px-6 py-2 text-gray-800">
-                <div className="lg:hidden">
-                    <Hamburger toggled={isOpen} toggle={setOpen} />
-                </div>
-                <div className="hidden lg:flex space-x-5 p-3 text-xl">
-                    <Link to="/dashboard" className="hover:text-gray-400">
-                        Dashboard
-                    </Link>
-                    <Link
-                        to="/prescriptions/review"
-                        className="hover:text-gray-400"
-                    >
-                        My prescriptions
-                    </Link>
-                    <Link to="/about" className="hover:text-gray-400">
-                        About
-                    </Link>
-                    <Link to="/medications" className="hover:text-gray-400">
-                        Shop
-                    </Link>
-                    <Link to="/contact" className="hover:text-gray-400">
-                        Contact
-                    </Link>
-                </div>
-                <div className="absolute left-1/2 transform -translate-x-1/2">
-                    <Link to={"/dashboard"}>
-                        <img
-                            src={`${import.meta.env.BASE_URL}logo.png`}
-                            alt="Logo"
-                            className="h-16"
-                        />
-                    </Link>
-                </div>
+   return (
+       <div className="relative font-sans py-2 z-50">
+           <div className="flex justify-between items-center px-6 py-2 text-gray-800">
+               <div className="lg:hidden">
+                   <Hamburger toggled={isOpen} toggle={setOpen} />
+               </div>
+               <div className="hidden lg:flex space-x-5 p-3 text-xl">
+                   <Link to="/dashboard" className="hover:text-gray-400">
+                       Dashboard
+                   </Link>
+                   <Link
+                       to={isDoctor ? "/prescriptions/allocate" : "/prescriptions/review"}
+                       className="hover:text-gray-400"
+                   >
+                       Prescriptions
+                   </Link>
+                   <Link to="/about" className="hover:text-gray-400">
+                       About
+                   </Link>
+                   <Link to="/medications" className="hover:text-gray-400">
+                       Shop
+                   </Link>
+                   <Link to="/contact" className="hover:text-gray-400">
+                       Contact
+                   </Link>
+               </div>
+               <div className="absolute left-1/2 transform -translate-x-1/2">
+                   <Link to={"/dashboard"}>
+                       <img
+                           src={`${import.meta.env.BASE_URL}logo.png`}
+                           alt="Logo"
+                           className="h-16"
+                       />
+                   </Link>
+               </div>
 
                 <div className="flex items-center space-x-4 text-xl">
                     {/* {!isSearchOpen && (

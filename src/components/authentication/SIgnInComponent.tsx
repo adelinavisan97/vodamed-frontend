@@ -21,7 +21,7 @@ const SignInComponent: React.FC = () => {
         try {
             const response = await signIn(email, password);
             localStorage.setItem("authToken", response.token);
-            login(response.token);
+            login(response.token, response.isDoctor);
             localStorage.setItem("userId", response.userId);
             console.log(localStorage.getItem("userId"));
             localStorage.setItem("isDoctor", response.isDoctor)

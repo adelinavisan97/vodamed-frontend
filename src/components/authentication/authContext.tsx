@@ -3,9 +3,11 @@ import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
+
 interface AuthContextProps {
     isAuthenticated: boolean;
-    login: (token: string) => void;
+    isDoctor: boolean;  
+    login: (token: string, isDoctor: boolean) => void;
     logout: () => void;
 }
 
@@ -17,25 +19,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     const navigate = useNavigate();
     const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
         const token = localStorage.getItem("authToken");
-        console.log("AuthProvider initial state, token:", token);
         return !!token;
     });
+    
+    // Add isDoctor state
+    const [isDoctor, setIsDoctor] = useState<boolean>(() => {
+        return localStorage.getItem("isDoctor") === "true";
+    });
 
-    const login = (token: string) => {
+    // Update login to handle isDoctor
+    const login = (token: string, isDoctor: boolean) => {
         localStorage.setItem("authToken", token);
+        localStorage.setItem("isDoctor", String(isDoctor));
         setIsAuthenticated(true);
+        setIsDoctor(isDoctor);
         console.log("Logged in, token set:", token);
     };
 
     const logout = () => {
         localStorage.removeItem("authToken");
+        localStorage.removeItem("isDoctor");
         setIsAuthenticated(false);
+        setIsDoctor(false);
         console.log("Logged out, token removed");
         navigate("/signin");
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, isDoctor, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
