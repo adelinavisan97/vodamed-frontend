@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { getBasket, clearBasket, BasketItem, updateBasketItemQuantity } from '../components/BasketFunctions';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { API_URL } from '../authentication/auth-service';
+import { API_URL } from '../authentication/apiClient';
 import { useAuth } from '../components/authentication/authContext';
 
 interface MedicineDbModel {

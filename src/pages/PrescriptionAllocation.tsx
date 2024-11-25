@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { MedicineDbModel } from '../models/MedicationModels';
-import { API_URL } from '../authentication/auth-service';
+import { API_URL } from '../authentication/apiClient';
 
 interface Patient {
   id: string;

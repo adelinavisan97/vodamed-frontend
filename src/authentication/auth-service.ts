@@ -1,9 +1,6 @@
 import axios from 'axios';
 import apiClient from './apiClient';
 
-export const API_URL = 'https://sea-turtle-app-9l4ak.ondigitalocean.app/api';
-// export const API_URL = 'http://localhost:443/api';
-
 /**
  * Sign up a new user.
  * @param email User's email address.
