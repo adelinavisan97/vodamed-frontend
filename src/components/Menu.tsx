@@ -293,10 +293,10 @@ const Menu = () => {
                     </li>
                     <li className="hover:text-gray-400">
                         <Link
-                            to="/prescriptions/review"
-                            onClick={() => setOpen(false)}
+                        to={isDoctor ? "/prescriptions/allocate" : "/prescriptions/review"}
+                        className="hover:text-gray-400"
                         >
-                            My prescriptions
+                            Prescriptions
                         </Link>
                     </li>
                     <li className="hover:text-gray-400">
